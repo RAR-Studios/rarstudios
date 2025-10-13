@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samples — RAR Studios</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 class="logo">RAR Studios</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="samples.html" class="active">Samples</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="gallery">
+    <h2>Selected Works</h2>
+    <div class="grid">
+      <img src="https://via.placeholder.com/500x500" alt="Ring design">
+      <img src="https://via.placeholder.com/500x500" alt="Pendant design">
+      <img src="https://via.placeholder.com/500x500" alt="Bracelet design">
+      <img src="https://via.placeholder.com/500x500" alt="Earrings design">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 RAR Studios — Crafted with precision in Barcelona</p>
+  </footer>
+</body>
+</html>

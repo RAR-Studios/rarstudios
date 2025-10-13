@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — RAR Studios</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 class="logo">RAR Studios</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="samples.html">Samples</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <section class="contact">
+    <h2>Get in Touch</h2>
+    <p>For commissions, collaborations, or inquiries:</p>
+    <p><strong>Email:</strong> <a href="mailto:info@rarstudios.com">info@rarstudios.com</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 RAR Studios — Crafted with precision in Barcelona</p>
+  </footer>
+</body>
+</html>
