@@ -1,45 +1,495 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RAR Studios — Rune Alexander Reisaenen</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RAR Studios — Gold & Silver</title>
+  <style>
+    /* ---------- Base ---------- */
+    :root{
+      --bg1:#071324;   /* deep navy */
+      --bg2:#0f2b3d;   /* soft blue */
+      --glass: rgba(255,255,255,0.06);
+      --glass-strong: rgba(255,255,255,0.10);
+      --accent: rgba(255,255,255,0.9);
+      --muted: rgba(255,255,255,0.7);
+      --callout: rgba(255,255,255,0.04);
+      --max-width:1100px;
+      --container-pad:24px;
+      --radius:14px;
+      --transition:250ms cubic-bezier(.2,.9,.2,1);
+      --shadow: 0 10px 30px rgba(3,8,12,0.6);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      color:var(--accent);
+      background:
+        linear-gradient(180deg, rgba(5,12,20,0.6), rgba(4,9,14,0.85)),
+        /* subtle silk gradient suggestion - replace with actual silk image for best effect */
+        radial-gradient(1200px 600px at 10% 10%, rgba(20,40,60,0.12), transparent 10%),
+        linear-gradient(90deg, rgba(8,16,24,0.25), rgba(6,12,20,0.1));
+      background-color:var(--bg1);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+
+    /* silk texture overlay (light) - swap with actual image in .hero if you want */
+    .silk {
+      position: absolute;
+      inset:0;
+      background-image: url(''); /* optional: add your silk photo here */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+    }
+
+    .wrap{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding: var(--container-pad);
+    }
+
+    /* ---------- Header ---------- */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 var(--container-pad);
+      z-index:60;
+      backdrop-filter: blur(8px) saturate(120%);
+      background: linear-gradient(180deg, rgba(3,6,10,0.35), rgba(3,6,10,0.10));
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background: #000;
+      color:#fff;
+      font-weight:700;
+      letter-spacing:1px;
+      font-size:13px;
+      box-shadow: 0 6px 18px rgba(2,4,6,0.6);
+    }
+    .navlinks{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .navlinks a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:15px;
+      padding:8px 10px;
+      border-radius:8px;
+      transition:var(--transition);
+    }
+    .navlinks a:hover{ color:var(--accent); background:var(--callout); }
+
+    /* hamburger */
+    .hamburger{
+      display:none;
+      width:42px;
+      height:42px;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background: transparent;
+      border:1px solid rgba(255,255,255,0.04);
+      cursor:pointer;
+    }
+    .hamburger span{
+      display:block;
+      width:18px;
+      height:2px;
+      background:var(--accent);
+      border-radius:2px;
+      position:relative;
+      transition:var(--transition);
+    }
+    .hamburger span::before, .hamburger span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:100%;
+      height:2px;
+      background:var(--accent);
+      border-radius:2px;
+      transition:var(--transition);
+    }
+    .hamburger span::before{ transform: translateY(-6px); }
+    .hamburger span::after{ transform: translateY(6px); }
+
+    /* mobile menu overlay */
+    .mobile-menu{
+      position:fixed;
+      top:72px;
+      right:16px;
+      background: linear-gradient(180deg, rgba(10,18,26,0.95), rgba(6,12,18,0.95));
+      border-radius:12px;
+      padding:18px;
+      min-width:180px;
+      box-shadow: 0 10px 40px rgba(2,6,10,0.6);
+      display:none;
+      z-index:90;
+    }
+    .mobile-menu a{
+      display:block;
+      color:var(--accent);
+      text-decoration:none;
+      padding:10px 8px;
+      border-radius:8px;
+      margin:6px 0;
+    }
+    .mobile-menu a:hover{ background:var(--callout); color:var(--accent); }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      height:92vh;
+      min-height:560px;
+      display:flex;
+      align-items:center;
+      position:relative;
+      padding-top:72px; /* so header doesn't overlap on initial view */
+      overflow:hidden;
+    }
+    .hero-inner{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr;
+      align-items:center;
+      gap:28px;
+    }
+    .hero .content{
+      max-width:880px;
+      margin: 0 auto;
+      text-align:center;
+      padding:36px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    h1{
+      margin:0 0 14px 0;
+      font-size:clamp(30px, 5.7vw, 56px);
+      line-height:1.02;
+      letter-spacing: -0.02em;
+      font-family: "Playfair Display", serif;
+      color:var(--accent);
+    }
+    p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:18px;
+    }
+    .btn{
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--accent);
+      text-decoration:none;
+      background:transparent;
+      transition:var(--transition);
+    }
+    .btn:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.6); }
+
+    /* ---------- Services ---------- */
+    .services{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:28px;
+    }
+    .service-card{
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.02);
+      min-height:120px;
+    }
+    .service-card h3{ margin:0 0 8px 0; color:var(--accent); }
+    .service-card p{ margin:0; color:var(--muted); font-size:15px; }
+
+    /* ---------- Top sellers ---------- */
+    .section{
+      padding:72px 0;
+    }
+    .section h2{
+      font-family:"Playfair Display", serif;
+      font-size:38px;
+      margin:0 0 22px 0;
+      color:var(--accent);
+    }
+    .grid-4{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:18px;
+    }
+    .product{
+      background:var(--glass);
+      border-radius:12px;
+      padding:12px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .product img{
+      display:block;
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+
+    /* ---------- About ---------- */
+    .about{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:28px;
+      align-items:center;
+    }
+    .about p{ color:var(--muted); line-height:1.6; font-size:16px; }
+
+    /* ---------- Footer/contact ---------- */
+    footer{
+      border-top:1px solid rgba(255,255,255,0.03);
+      padding:28px 0 60px 0;
+      margin-top:28px;
+    }
+    .contacts{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .icon{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02);
+      color:var(--accent);
+      text-decoration:none;
+      font-size:14px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:900px){
+      .services{ grid-template-columns: 1fr; }
+      .about{ grid-template-columns: 1fr; }
+      .grid-4{ grid-template-columns: 1fr 1fr; }
+      .navlinks{ display:none; }
+      .hamburger{ display:flex; }
+      .mobile-menu{ right:12px; left:auto; }
+      .hero{ min-height:72vh; }
+    }
+    @media (max-width:520px){
+      .grid-4{ grid-template-columns: 1fr; }
+      header{ height:64px; }
+      .logo{ width:48px; height:48px; font-size:12px;}
+      .hero .content{ padding:20px; }
+      h1{ font-size:28px; }
+    }
+
+    /* hamburger active state */
+    .hamburger.open span{ background:transparent; }
+    .hamburger.open span::before{ transform: rotate(45deg); top:0; }
+    .hamburger.open span::after{ transform: rotate(-45deg); top:0; }
+    .hamburger span::before, .hamburger span::after{ top:0; }
+
+  </style>
 </head>
 <body>
-  <header>
-    <h1 class="logo">RAR Studios</h1>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="samples.html">Samples</a>
-      <a href="contact.html">Contact</a>
+  <div class="silk" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header role="banner" aria-label="Main header">
+    <div class="brand">
+      <div class="wrap" style="padding:0; display:flex; align-items:center; gap:12px;">
+        <div class="logo" aria-hidden="true">LOGO</div>
+        <div style="display:none; color:var(--muted); font-size:14px;">RAR Studios</div>
+      </div>
+    </div>
+
+    <nav role="navigation" aria-label="Primary">
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#top-sellers">Top Sellers</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span></span>
+      </button>
+
+      <div id="mobileMenu" class="mobile-menu" role="menu" style="display:none;">
+        <a href="#home" role="menuitem">Home</a>
+        <a href="#services" role="menuitem">Services</a>
+        <a href="#top-sellers" role="menuitem">Top Sellers</a>
+        <a href="#about" role="menuitem">About</a>
+        <a href="#contact" role="menuitem">Contact</a>
+      </div>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="content">
-      <h2>Crafting stories through metal and fire</h2>
-      <p>
-        <strong>Rune Alexander Reisaenen</strong> — a Barcelona-based goldsmith
-        focused on custom jewellery and original design.
-      </p>
-    </div>
-  </section>
+  <!-- Page content -->
+  <main>
 
-  <section class="gallery">
-    <img src="images/DSC03856.jpg" alt="Filigree ring with opal" />
-    <img src="images/DSC03875.jpg" alt="Emerald men's ring" />
-  </section>
+    <!-- HERO -->
+    <section id="home" class="hero" role="region" aria-label="Home">
+      <div class="wrap hero-inner">
+        <div class="content" style="text-align:left; margin-top:18vh;">
+          <h1>Gold &amp; Silver —<br> Custom, Repair, Ready.</h1>
+          <p class="lead">Jewelry repair, polish &amp; custom work in Barcelona.</p>
+          <a class="btn" href="#services">View Work</a>
 
+          <div style="margin-top:26px;" class="services" aria-hidden="false">
+            <div class="service-card">
+              <h3>Repair &amp; Polish</h3>
+              <p>Expert repairs, sizing and polishing for gold &amp; silver.</p>
+            </div>
+            <div class="service-card">
+              <h3>Made-to-Order</h3>
+              <p>Commission unique pieces tailored to your vision.</p>
+            </div>
+            <div class="service-card">
+              <h3>Pre-Made Jewelry</h3>
+              <p>Browse ready pieces — wearable, handcrafted work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP SELLERS -->
+    <section id="top-sellers" class="section wrap" role="region" aria-label="Top sellers">
+      <h2>Top Sellers</h2>
+      <div style="display:flex; justify-content:flex-end; margin-bottom:8px;">
+        <a class="btn" href="#shop" style="font-size:14px; padding:8px 12px;">See all</a>
+      </div>
+      <div class="grid-4">
+        <div class="product"><img src="https://images.unsplash.com/photo-1540835115813-8a0d9f7beaa0?w=1200&q=80" alt="Product 1"></div>
+        <div class="product"><img src="https://images.unsplash.com/photo-1556228720-4b1c9b42c1a9?w=1200&q=80" alt="Product 2"></div>
+        <div class="product"><img src="https://images.unsplash.com/photo-1530023367847-4b7b4b0f169f?w=1200&q=80" alt="Product 3"></div>
+        <div class="product"><img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=1200&q=80" alt="Product 4"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section wrap" role="region" aria-label="About">
+      <h2>About</h2>
+      <div class="about" style="margin-top:18px;">
+        <div>
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&q=80"
+               alt="Portrait" style="width:100%; height:360px; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,0.03);">
+        </div>
+        <div>
+          <p>
+            I’m a Norwegian goldsmith based in Barcelona with a background in glassblowing and contemporary craft.
+            After years traveling and working as a glass artist — exploring form, movement and light — I turned my attention
+            to jewelry: the same obsession with material at a smaller scale. My approach blends bohemian chic with Scandinavian
+            clarity — organic forms, textured surfaces and durable pieces meant to be worn every day.
+          </p>
+          <p style="margin-top:12px;">
+            Services include repairs &amp; polishing, custom commissions and a curated selection of pre-made pieces. Every piece
+            is handled personally in the Barcelona workshop.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section wrap" role="region" aria-label="Contact">
+      <h2>Contact</h2>
+      <div style="display:flex; gap:18px; align-items:center; margin-top:18px; flex-wrap:wrap;">
+        <a class="icon" href="https://wa.me/34624012186" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">📱 WhatsApp +34 624 01 21 86</a>
+        <a class="icon" href="mailto:info@rarstudios.com" aria-label="Email">✉️ info@rarstudios.com</a>
+        <a class="icon" href="https://www.instagram.com/rar.studiosig/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸 @rar.studiosig</a>
+        <a class="icon" href="https://www.facebook.com/profile.php?id=61578029379720" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f Facebook</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
   <footer>
-    <div class="contact">
-      <a href="https://www.instagram.com/rar.studiosig/" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=61578029379720" target="_blank">Facebook</a>
-      <a href="mailto:info@rarstudios.com">info@rarstudios.com</a>
-      <a href="https://wa.me/34624012186" target="_blank">WhatsApp</a>
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="logo" style="width:44px;height:44px;font-size:12px;">LOGO</div>
+        <div style="color:var(--muted); font-size:14px;">RAR Studios — Barcelona</div>
+      </div>
+      <div style="color:var(--muted); font-size:13px;">© <span id="y"></span> RAR Studios. All rights reserved.</div>
     </div>
-    <p>© 2025 RAR Studios — Crafted with precision in Barcelona</p>
   </footer>
+
+  <script>
+    // small initialization
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // hamburger + mobile menu behavior
+    const hambtn = document.getElementById('hambtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hambtn.addEventListener('click', () => {
+      const open = hambtn.classList.toggle('open');
+      hambtn.setAttribute('aria-expanded', String(open));
+      mobileMenu.style.display = open ? 'block' : 'none';
+    });
+
+    // close mobile menu when click a link
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hambtn.classList.remove('open');
+        hambtn.setAttribute('aria-expanded','false');
+        mobileMenu.style.display = 'none';
+      });
+    });
+
+    // close on ESC
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape'){
+        hambtn.classList.remove('open');
+        hambtn.setAttribute('aria-expanded','false');
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    // Small accessibility: focus outline when tabbing
+    document.body.addEventListener('keyup', (e) => {
+      if(e.key === 'Tab') document.documentElement.style.scrollBehavior = 'smooth';
+    });
+
+    // make sure internal links respect header height on direct navigation (offset scroll)
+    function offsetAnchor() {
+      if(location.hash.length !== 0) {
+        window.scrollTo(window.scrollX, window.scrollY - 72);
+      }
+    }
+    window.setTimeout(offsetAnchor, 0);
+    window.addEventListener("hashchange", offsetAnchor);
+  </script>
 </body>
 </html>
