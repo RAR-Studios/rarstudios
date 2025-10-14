@@ -455,7 +455,14 @@
       const open = hambtn.classList.toggle('open');
       hambtn.setAttribute('aria-expanded', String(open));
       mobileMenu.style.display = open ? 'block' : 'none';
-    });
+      const btn = document.getElementById('hambtn');
+  const menu = document.getElementById('mobileMenu');
+
+  btn.addEventListener('click', () => {
+    const open = btn.classList.toggle('open');
+    menu.style.display = open ? 'block' : 'none';
+    btn.setAttribute('aria-expanded', open);
+  });
 
     // close mobile menu when click a link
     mobileMenu.querySelectorAll('a').forEach(a => {
