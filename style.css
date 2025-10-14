@@ -47,6 +47,11 @@ nav a:hover {
   color: #ccc;
   max-width: 600px;
   margin: 0 auto;
+.hero {
+  background-image: url('images/silk.jpg');
+  background-size: cover;
+  background-position: center;
+  
 }
 
 .gallery {
