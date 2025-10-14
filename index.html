@@ -436,15 +436,13 @@
   </main>
 
   <!-- Footer -->
-  <footer>
-    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div class="logo" style="width:44px;height:44px;font-size:12px;">LOGO</div>
-        <div style="color:var(--muted); font-size:14px;">RAR Studios — Barcelona</div>
-      </div>
-      <div style="color:var(--muted); font-size:13px;">© <span id="y"></span> RAR Studios. All rights reserved.</div>
-    </div>
-  </footer>
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+    <p style="color:var(--muted); font-size:14px;">© 2025 RAR Studios. All rights reserved.</p>
+    <a href="#home" style="color:var(--muted); text-decoration:none;">Back to top ↑</a>
+  </div>
+</footer>
+
 
   <script>
     // small initialization
@@ -457,6 +455,13 @@
       const open = hambtn.classList.toggle('open');
       hambtn.setAttribute('aria-expanded', String(open));
       mobileMenu.style.display = open ? 'block' : 'none';
+        const btn = document.getElementById('hambtn');
+  const menu = document.getElementById('mobileMenu');
+
+  btn.addEventListener('click', () => {
+    const open = btn.classList.toggle('open');
+    menu.style.display = open ? 'block' : 'none';
+    btn.setAttribute('aria-expanded', open);
     });
 
     // close mobile menu when click a link
