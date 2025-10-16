@@ -95,3 +95,20 @@ footer a {
 footer a:hover {
   color: #fff;
 }
+  .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
