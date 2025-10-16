@@ -4,9 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>RAR Studios — Gold & Silver</title>
-<style>
-    <link rel="stylesheet" href="style.css">
-</head>
+<link rel="stylesheet" href="style.css">
+
 /* ---------- Base ---------- */
 :root{
 --bg1:#0f2b3d;   /* deep navy */
@@ -523,16 +522,14 @@ window.addEventListener("hashchange", offsetAnchor);
 </script>
 </body>
 </html>
-  
-<script>
-    window.addEventListener('scroll', function() {
-      const logo = document.querySelector('.site-logo');
-      if (window.scrollY > 100) {
-        logo.classList.add('scrolled');
-      } else {
-        logo.classList.remove('scrolled');
-      }
-    });
-  </script>
-</body>
-</html>
+
+<!-- javascript -->
+<const hambtn = document.getElementById('hambtn');
+<const mobileMenu = document.getElementById('mobileMenu');
+
+<hambtn.addEventListener('click', () => {
+<  const open = hambtn.classList.toggle('open');
+<  hambtn.setAttribute('aria-expanded', String(open));
+<  mobileMenu.style.display = open ? 'block' : 'none';
+});
+
