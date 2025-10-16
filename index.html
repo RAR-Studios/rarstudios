@@ -105,6 +105,18 @@ transition:var(--transition);
 }
 .navlinks a:hover{ color:var(--accent); background:var(--callout); }
 
+  <script>
+window.addEventListener('scroll', function() {
+  const logo = document.querySelector('.site-logo');
+  if (window.scrollY > 100) {
+    logo.classList.add('scrolled');
+  } else {
+    logo.classList.remove('scrolled');
+  }
+});
+</script>
+
+
 /* hamburger */
 .hamburger{
 display:none;
