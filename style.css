@@ -112,3 +112,25 @@ footer a:hover {
   transform: scale(1.1);
 }
 
+.site-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  position: relative;
+  z-index: 100;
+}
+
+.site-logo {
+  width: 160px; /* adjust size */
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.site-logo.scrolled {
+  width: 80px;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
