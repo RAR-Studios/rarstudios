@@ -109,26 +109,26 @@ footer a:hover {
 }
 
 .social-icon:hover {
-  transform: scale(1.10);
+  transform: scale(1.1);
 }
 
 .site-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 0;
+  padding: 60px 0;
   position: relative;
   z-index: 100;
 }
 
 .site-logo {
-  width: 16px; /* adjust size */
+  width: 160px; /* adjust size */
   height: auto;
   transition: all 0.3s ease;
 }
 
 .site-logo.scrolled {
-  width: 6px;
+  width: 60px;
   position: fixed;
   top: 10px;
   left: 50%;
