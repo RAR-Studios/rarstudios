@@ -122,13 +122,13 @@ footer a:hover {
 }
 
 .site-logo {
-  width: 160px; /* adjust size */
+  width: 16px; /* adjust size */
   height: auto;
   transition: all 0.3s ease;
 }
 
 .site-logo.scrolled {
-  width: 80px;
+  width: 6px;
   position: fixed;
   top: 10px;
   left: 50%;
