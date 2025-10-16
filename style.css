@@ -116,7 +116,7 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 0;
+  padding: 40px 0;
   position: relative;
   z-index: 100;
 }
@@ -128,9 +128,10 @@ footer a:hover {
 }
 
 .site-logo.scrolled {
-  width: 60px;
+  width: 80px;
   position: fixed;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
+
