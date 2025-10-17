@@ -164,74 +164,37 @@ margin:6px 0;
 }
 .mobile-menu a:hover{ background:var(--callout); color:var(--accent); }
 
-/* ---------- Hero ---------- */
-.hero{
-height:92vh;
-min-height:560px;
-display:flex;
-align-items:center;
-position:relative;
-padding-top:72px; /* so header doesn't overlap on initial view */
-overflow:hidden;
-}
-.hero-inner{
-width:100%;
-display:grid;
-grid-template-columns: 1fr;
-align-items:center;
-gap:28px;
-}
-.hero .content{
-max-width:880px;
-margin: 0 auto;
-text-align:center;
-padding:36px;
-background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-border-radius:12px;
-box-shadow: var(--shadow);
-backdrop-filter: blur(6px);
-}
-h1{
-margin:0 0 14px 0;
-font-size:clamp(30px, 5.7vw, 56px);
-line-height:1.02;
-letter-spacing: -0.02em;
-font-family: "Playfair Display", serif;
-color:var(--accent);
-}
-p.lead{
-margin:0 0 18px 0;
-color:var(--muted);
-font-size:18px;
-}
-.btn{
-display:inline-block;
-padding:12px 20px;
-border-radius:10px;
-border:1px solid rgba(255,255,255,0.08);
-color:var(--accent);
-text-decoration:none;
-background:transparent;
-transition:var(--transition);
-}
-.btn:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.6); }
+<!-- HERO -->
+<section id="home" class="hero" role="region" aria-label="Home">
+  <div class="wrap hero-inner">
+    <div class="content" style="text-align:center; margin-top:18v;">
+      <header class="site-header">
+        <img src="icons/logoblack.png" alt="RAR Studios Logo" class="site-logo">
+      </header>
 
-/* ---------- Service ---------- */
-.service{
-display:grid;
-grid-template-columns: repeat(3, 1fr);
-gap:18px;
-margin-top:28px;
-}
-.service-card{
-padding:18px;
-background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.02);
-min-height:120px;
-}
-.service-card h3{ margin:0 0 8px 0; color:var(--accent); }
-.service-card p{ margin:0; color:var(--muted); font-size:15px; }
+      <p class="lead">Handmade quality jewellery made with SILVER &amp; GOLD</p>
+      <a class="btn" href="#jewellery">View Work</a>
+
+      <!-- SERVICES -->
+      <div class="services" aria-hidden="false">
+        <a href="#premade" class="service-card">
+          <h3>Pre-Made Jewellery</h3>
+          <p>Handmade quality jewellery in silver and gold, ready for shipment.</p>
+        </a>
+
+        <a href="#custom" class="service-card">
+          <h3>Made-to-Order</h3>
+          <p>Commission unique pieces tailored to your vision.</p>
+        </a>
+
+        <a href="#repair" class="service-card">
+          <h3>Repair &amp; Polish</h3>
+          <p>Efficient &amp; quality polishing and repairs.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 /* ---------- products ---------- */
 .section{
