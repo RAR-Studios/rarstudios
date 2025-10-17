@@ -1,556 +1,193 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>RAR Studios — Gold & Silver</title>
-<link rel="stylesheet" href="style.css">
-<style>
-/* ---------- Base ---------- */
-:root{
---bg1:#0f2b3d;   /* deep navy */
---bg2:#0f2b3d;   /* soft blue */
---glass: rgba(255,255,255,0.06);
---glass-strong: rgba(255,255,255,0.10);
---accent: rgba(255,255,255,0.9);
---muted: rgba(255,255,255,0.7);
---callout: rgba(255,255,255,0.04);
---max-width:1100px;
---container-pad:24px;
---radius:14px;
---transition:250ms cubic-bezier(.2,.9,.2,1);
---shadow: 0 10px 30px rgba(3,8,12,0.6);
-font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-}
-
-html,body{height:100%;}
-body{
-margin:0;
-color:var(--accent);
-background:
-linear-gradient(180deg, rgba(5,12,20,0.6), rgba(4,9,14,0.85)),
-/* subtle silk gradient suggestion - replace with actual silk image for best effect */
-radial-gradient(1200px 600px at 10% 10%, rgba(20,40,60,0.12), transparent 10%),
-linear-gradient(90deg, rgba(8,16,24,0.25), rgba(6,12,20,0.1));
-background-color:var(--bg1);
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
-scroll-behavior:smooth;
-}
-
-/* silk texture overlay (light) - swap with actual image in .hero if you want */
-.silk {
-position: absolute;
-inset:0;
-background-image: url(''); /* optional: add your silk photo here */
-background-size: cover;
-background-position: center;
-opacity: 0.12;
-mix-blend-mode: overlay;
-pointer-events:none;
-}
-
-.wrap{
-max-width:var(--max-width);
-margin:0 auto;
-padding: var(--container-pad);
-}
-
-/* ---------- Header ---------- */
-header{
-position:fixed;
-top:0;
-left:0;
-right:0;
-height:72px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 var(--container-pad);
-z-index:60;
-backdrop-filter: blur(8px) saturate(120%);
-background: linear-gradient(180deg, rgba(3,6,10,0.35), rgba(3,6,10,0.10));
-box-shadow: var(--shadow);
-}
-.brand{
-display:flex;
-align-items:center;
-gap:14px;
-}
-.logo{
-width:56px;
-height:56px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:10px;
-background: #000;
-color:#fff;
-font-weight:700;
-letter-spacing:1px;
-font-size:13px;
-box-shadow: 0 6px 18px rgba(2,4,6,0.6);
-}
-.navlinks{
-display:flex;
-gap:18px;
-align-items:center;
-}
-.navlinks a{
-color:var(--muted);
-text-decoration:none;
-font-size:15px;
-padding:8px 10px;
-border-radius:8px;
-transition:var(--transition);
-}
-.navlinks a:hover{ color:var(--accent); background:var(--callout); }
-
-
-/* hamburger */
-.hamburger{
-display:none;
-width:42px;
-height:42px;
-align-items:center;
-justify-content:center;
-border-radius:10px;
-background: transparent;
-border:1px solid rgba(255,255,255,0.04);
-cursor:pointer;
-}
-.hamburger span{
-display:block;
-width:18px;
-height:2px;
-background:var(--accent);
-border-radius:2px;
-position:relative;
-transition:var(--transition);
-}
-.hamburger span::before, .hamburger span::after{
-content:"";
-position:absolute;
-left:0;
-width:100%;
-height:2px;
-background:var(--accent);
-border-radius:2px;
-transition:var(--transition);
-}
-.hamburger span::before{ transform: translateY(-6px); }
-.hamburger span::after{ transform: translateY(6px); }
-
-/* mobile menu overlay */
-.mobile-menu{
-position:fixed;
-top:72px;
-right:16px;
-background: linear-gradient(180deg, rgba(10,18,26,0.95), rgba(6,12,18,0.95));
-border-radius:12px;
-padding:18px;
-min-width:180px;
-box-shadow: 0 10px 40px rgba(2,6,10,0.6);
-display:none;
-z-index:90;
-}
-.mobile-menu a{
-display:block;
-color:var(--accent);
-text-decoration:none;
-padding:10px 8px;
-border-radius:8px;
-margin:6px 0;
-}
-.mobile-menu a:hover{ background:var(--callout); color:var(--accent); }
-
-/* ---------- Hero ---------- */
-.hero{
-height:92vh;
-min-height:560px;
-display:flex;
-align-items:center;
-position:relative;
-padding-top:72px; /* so header doesn't overlap on initial view */
-overflow:hidden;
-}
-.hero-inner{
-width:100%;
-display:grid;
-grid-template-columns: 1fr;
-align-items:center;
-gap:28px;
-}
-.hero .content{
-max-width:880px;
-margin: 0 auto;
-text-align:center;
-padding:36px;
-background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-border-radius:12px;
-box-shadow: var(--shadow);
-backdrop-filter: blur(6px);
-}
-h1{
-margin:0 0 14px 0;
-font-size:clamp(30px, 5.7vw, 56px);
-line-height:1.02;
-letter-spacing: -0.02em;
-font-family: "Playfair Display", serif;
-color:var(--accent);
-}
-p.lead{
-margin:0 0 18px 0;
-color:var(--muted);
-font-size:18px;
-}
-.btn{
-display:inline-block;
-padding:12px 20px;
-border-radius:10px;
-border:1px solid rgba(255,255,255,0.08);
-color:var(--accent);
-text-decoration:none;
-background:transparent;
-transition:var(--transition);
-}
-.btn:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.6); }
-
-/* ---------- Services ---------- */
-.services{
-display:grid;
-grid-template-columns: repeat(3, 1fr);
-gap:18px;
-margin-top:28px;
-}
-.service-card{
-padding:18px;
-background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.02);
-min-height:120px;
-}
-.service-card h3{ margin:0 0 8px 0; color:var(--accent); }
-.service-card p{ margin:0; color:var(--muted); font-size:15px; }
-
-/* ---------- products ---------- */
-.section{
-padding:72px 0;
-}
-.section h2{
-font-family:"Playfair Display", serif;
-font-size:38px;
-margin:0 0 22px 0;
-color:var(--accent);
-}
-.grid-4{
-display:grid;
-grid-template-columns: repeat(2, 1fr);
-gap:18px;
-}
-.product{
-background:var(--glass);
-border-radius:12px;
-padding:12px;
-overflow:hidden;
-border:1px solid rgba(255,255,255,0.03);
-}
-.product img{
-display:block;
-width:100%;
-height:220px;
-object-fit:cover;
-border-radius:10px;
-}
-
-/* ---------- About ---------- */
-.about{
-display:grid;
-grid-template-columns: 1fr 1fr;
-gap:28px;
-align-items:center;
-}
-.about p{ color:var(--muted); line-height:1.6; font-size:16px; }
-
-/* ---------- Footer/contact ---------- */
-footer{
-border-top:1px solid rgba(255,255,255,0.03);
-padding:28px 0 60px 0;
-margin-top:28px;
-}
-.contacts{
-display:flex;
-gap:14px;
-align-items:center;
-}
-.icon{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap:8px;
-padding:8px 12px;
-border-radius:999px;
-background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-border:1px solid rgba(255,255,255,0.02);
-color:var(--accent);
-text-decoration:none;
-font-size:14px;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width:900px){
-.services{ grid-template-columns: 1fr; }
-.about{ grid-template-columns: 1fr; }
-.grid-4{ grid-template-columns: 1fr 1fr; }
-.navlinks{ display:none; }
-.hamburger{ display:flex; }
-.mobile-menu{ right:12px; left:auto; }
-.hero{ min-height:72vh; }
-}
-@media (max-width:520px){
-.grid-4{ grid-template-columns: 1fr; }
-header{ height:64px; }
-.logo{ width:48px; height:48px; font-size:12px;}
-.hero .content{ padding:20px; }
-h1{ font-size:28px; }
-}
-
-/* hamburger active state */
-.hamburger.open span{ background:transparent; }
-.hamburger.open span::before{ transform: rotate(45deg); top:0; }
-.hamburger.open span::after{ transform: rotate(-45deg); top:0; }
-.hamburger span::before, .hamburger span::after{ top:0; }
-
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RAR Studios — Gold & Silver</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="silk" aria-hidden="true"></div>
 
-<!-- Header -->
-<header role="banner" aria-label="Main header">
-<div class="brand">
-<div class="wrap" style="padding:0; display:flex; align-items:center; gap:40px;">
-<div class="logo">
-<img src="icons/logoblack.png" alt="RAR Studios logo" style="width:100%; height:100%; object-fit:contain; border-radius:10px;">
-</div>
+  <!-- Header -->
+  <header class="site-header" role="banner" aria-label="Main header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <a href="#home" class="logo-link" aria-label="RAR Studios home">
+          <!-- Use transparent PNG (no black box) -->
+          <img src="icons/logo.png" alt="RAR Studios logo" class="logo-img">
+        </a>
+        <div class="brand-text">RAR Studios</div>
+      </div>
 
-<div style="display:none; color:var(--muted); font-size:14px;">RAR Studios</div>
-</div>
-</div>
+      <nav class="primary-nav" role="navigation" aria-label="Primary">
+        <ul class="navlinks" role="menubar">
+          <li role="none"><a role="menuitem" href="#home" class="navlink">Home</a></li>
+          <li role="none" class="dropdown">
+            <button class="navlink dropbtn" aria-expanded="false" aria-haspopup="true">Services ▾</button>
+            <ul class="dropdown-content" role="menu" aria-label="Services">
+              <li><a role="menuitem" href="#pre-made-jewellery">Pre-made Jewellery</a></li>
+              <li><a role="menuitem" href="#made-to-order">Made-to-order</a></li>
+              <li><a role="menuitem" href="#repair">Repair</a></li>
+            </ul>
+          </li>
+          <li role="none"><a role="menuitem" href="#about" class="navlink">About</a></li>
+          <li role="none"><a role="menuitem" href="#contact" class="navlink">Contact</a></li>
+        </ul>
 
-<nav role="navigation" aria-label="Primary">
-<div class="navlinks">
-  <a href="#home" class="active">Home</a>
-<div class="dropdown">
-  <a href="#service" class="dropbtn">Service</a>
-    <div class="dropdown-content">
-      <a href="#Pre-Made Jewellery">Pre-Made Jewellery</a>
-      <a href="#Made-To-Order">Made-To-Order</a>
-      <a href="#repair">Repair & Polish</a>
+        <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span></span>
+        </button>
+      </nav>
     </div>
-  </div>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-</div>
 
-<button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-<span></span>
-</button>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu" role="menu" aria-hidden="true">
+      <a href="#home" role="menuitem">Home</a>
+      <a href="#pre-made-jewellery" role="menuitem">Pre-made Jewellery</a>
+      <a href="#made-to-order" role="menuitem">Made-to-order</a>
+      <a href="#repair" role="menuitem">Repair</a>
+      <a href="#about" role="menuitem">About</a>
+      <a href="#contact" role="menuitem">Contact</a>
+    </div>
+  </header>
 
-<div id="mobileMenu" class="mobile-menu" role="menu" style="display:none;">
-<a href="#home" role="menuitem">Home</a>
-<a href="#services" role="menuitem">Services</a>
-<a href="#Pre-Made Jewellery" role="menuitem">Pre-Made Jewellery</a>
-<a href="#about" role="menuitem">About</a>
-<a href="#contact" role="menuitem">Contact</a>
-</div>
-</nav>
-</header>
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero" role="region" aria-label="Home">
+      <div class="wrap hero-inner">
+        <div class="hero-banner">
+          <!-- Replace with your planned banner image -->
+          <img src="images/banner.jpg" alt="RAR Studios banner" class="banner-img">
+        </div>
 
-<!-- Page content -->
-<main>
+        <div class="hero-content">
+          <h1 class="hero-title">Handmade jewellery in Silver &amp; Gold</h1>
+          <p class="lead">Unique, wearable pieces made in Barcelona. Repairs, commissions, and a curated selection of pre-made items.</p>
+          <div class="hero-cta">
+            <a class="btn" href="#pre-made-jewellery">View Work</a>
+          </div>
 
-<!-- HERO -->
-<section id="home" class="hero" role="region" aria-label="Home">
-<div class="wrap hero-inner">
-<div class="content" style="text-align:center; margin-top:18v;">
-<header class="site-header">
-  <img src="icons/logoblack.png" alt="RAR Studios Logo "class="site-logo">
-</header>
-<p class="lead"> Handmade quality jewellery made with SILVER &amp; GOLD  </p>
-<a class="btn" href="#Pre-Made Jewellery">View Work</a>
-<div style="margin-top:26px;" class="services" aria-hidden="false">
-<a href="#Pre-Made Jewellery">
-<h3>Pre-Made Jewellery</h3>
-<p>Hand Made Quality Jewellery In Silver and gold, Reedy for Shipment. </p>
-</div>
-<a href="#Made-to-Order">
-<h3>Made-to-Order</h3>
-<p>Commission unique pieces tailored to your vision.</p>
-</div>
-<a href="#Prepair &amp; Polish">
-<h3>Prepair &amp; Polish</h3>
-<p>Efficient &amp; Quality polish &amp; Repairs. </p>
-</div>
-</div>
-</div>
-</div>
-</section>
+          <!-- Services quick links -->
+          <div class="services" role="list" aria-label="Quick services">
+            <a class="service-link" href="#pre-made-jewellery" role="listitem">
+              <div class="service-card">
+                <h3>Pre-made Jewellery</h3>
+                <p>Ready-to-ship handmade pieces.</p>
+              </div>
+            </a>
 
-<!-- Pre-Made Jewellery -->
-<section id="Pre-Made Jewellery" class="section wrap" role="region" aria-label="Pre-Made Jewellery">
-<h2>shop </h2>
-<div style="display:flex; justify-content:flex-end; margin-bottom:8px;">
+            <a class="service-link" href="#made-to-order" role="listitem">
+              <div class="service-card">
+                <h3>Made-to-order</h3>
+                <p>Commission unique pieces tailored to you.</p>
+              </div>
+            </a>
 
-<div class="grid-4">
-<div class="product"><img src="images/DSC03834.jpg" alt="earrings"
-alt="Portrait" style="width:320px; height:320px; object-fit:scale-down; border-radius:12px; border:1px solid rgba(255,255,255,0.03);"></div>
-<div class="product"><img src="images/DSC03853.jpg" alt="sami"
-alt="Portrait" style="width:320px; height:320px; object-fit:scale-down; border-radius:12px; border:1px solid rgba(255,255,255,0.03);"></div>
+            <a class="service-link" href="#repair" role="listitem">
+              <div class="service-card">
+                <h3>Repair</h3>
+                <p>Polish, repair and resize — done with care.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- Made to Order -->
-<section id="Made-to-Order" class="section wrap" role="region" aria-label="Made-to-Order">
-<h2>Made-To-Order</h2>
-<div style="display:flex; justify-content:flex-end; margin-bottom:8px;">
-<a class="btn" href="#Pre-Made Jewellery" style="font-size:14px; padding:8px 12px;">See all</a>
-</div>
-<div class="grid-4">
-<div class="product"><img src="images/DSC03834.jpg" alt="earrings"
-alt="Portrait" style="width:320px; height:320px; object-fit:scale-down; border-radius:12px; border:1px solid rgba(255,255,255,0.03);"></div>
-<div class="product"><img src="images/DSC03853.jpg" alt="sami"
-alt="Portrait" style="width:320px; height:320px; object-fit:scale-down; border-radius:12px; border:1px solid rgba(255,255,255,0.03);"></div>
-  
-<!-- Prepair -->
-<section id="Prepair" class="section wrap" role="region" aria-label="Prepair">
-<h2>Prepair</h2>
-<div style="display:flex; justify-content:flex-end; margin-bottom:8px;">
-<a class="btn" href="#Pre-Made Jewellery" style="font-size:14px; padding:8px 12px;">See all</a>
-</div>
-<div class="grid-4">
-<div class="product"><img src="images/DSC04169.jpg" alt="opal ring"
-alt="Portrait" style="width:320px; height:320px; object-fit:scale-down; border-radius:12px; border:1px solid rgba(255,255,255,0.03);"></div>
-<div class="product"><img src="images/DSC04190.jpg" alt="emerald ring"
-alt="Portrait" style="width:320px; height:320px; object-fit:scale-down; border-radius:12px; border:1px solid rgba(255,255,255,0.03);"></div>
-</div>
+    <!-- Pre-made Jewellery -->
+    <section id="pre-made-jewellery" class="section wrap" role="region" aria-label="Pre-made Jewellery">
+      <h2>Pre-made Jewellery</h2>
+      <div class="row-controls">
+        <a class="btn small" href="#pre-made-jewellery">See all</a>
+      </div>
 
+      <div class="grid-4">
+        <div class="product">
+          <img src="images/DSC03834.jpg" alt="handmade earrings" class="product-img">
+        </div>
+        <div class="product">
+          <img src="images/DSC03853.jpg" alt="sami inspired pendant" class="product-img">
+        </div>
+      </div>
+    </section>
 
+    <!-- Made-to-order -->
+    <section id="made-to-order" class="section wrap" role="region" aria-label="Made to order">
+      <h2>Made-to-order</h2>
+      <div class="row-controls">
+        <a class="btn small" href="#contact">Commission</a>
+      </div>
 
-<!-- ABOUT -->
-<section id="about" class="section wrap" role="region" aria-label="About">
-<h2>About</h2>
-<div class="about" style="margin-top:18px;">
-<div>
-<img src="images/selfie 1.jpg" alt="about me image"
-alt="Portrait" style="width:320px; height:320px; object-fit:scale-down; border-radius:12px; border:1px solid rgba(255,255,255,0.03);">
-</div>
-<div>
-<p>
-I’m a Norwegian goldsmith based in Barcelona with a background in glassblowing and contemporary craft.
-After years traveling and working as a glass artist — exploring form, movement and light — I turned my attention
-to jewelry: the same obsession with material at a smaller scale. My approach blends bohemian chic with exploration with traditional Old mythology and beliefs.
-My peces usually have textured surfaces and durable - meant to be worn every day.
-</p>
-<p style="margin-top:12px;">
-Services include repairs &amp; polishing, custom commissions and possibly to use clients gold and a curated selection of pre-made pieces. Every piece
-is handled personally in the Barcelona workshop.
-</p>
-</div>
-</div>
-</section>
+      <div class="grid-4">
+        <div class="product">
+          <img src="images/DSC03834.jpg" alt="custom ring" class="product-img">
+        </div>
+        <div class="product">
+          <img src="images/DSC03853.jpg" alt="custom pendant" class="product-img">
+        </div>
+      </div>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section wrap" role="region" aria-label="Contact">
-<h2>Contact</h2>
-<div class="social-links">
-  <a href="https://www.instagram.com/yourpage" target="_blank">
-    <img src="icons/1.png" alt="Instagram" class="social-icon">
-  </a>
-  <a href="https://www.facebook.com/yourpage" target="_blank">
-    <img src="icons/—Pngtree—black facebook icon facebook logo_3584912.png" alt="Facebook" class="social-icon">
-  </a>
+    <!-- Repair -->
+    <section id="repair" class="section wrap" role="region" aria-label="Repair and polish">
+      <h2>Repair</h2>
+      <div class="row-controls">
+        <a class="btn small" href="#contact">Get a quote</a>
+      </div>
 
-<div style="display:flex; gap:18px; align-items:center; margin-top:18px; flex-wrap:wrap;">
-<a class="icon" href="icons.1.png" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">📱 WhatsApp +34 624 01 21 86</a>
-<a class="icon" href="icons.2.png" aria-label="Email">✉️ info@rarstudios.com</a>
-</div>
-</section>
+      <div class="grid-4">
+        <div class="product">
+          <img src="images/DSC04169.jpg" alt="opal ring repair example" class="product-img">
+        </div>
+        <div class="product">
+          <img src="images/DSC04190.jpg" alt="emerald ring repair example" class="product-img">
+        </div>
+      </div>
+    </section>
 
-</main>
+    <!-- About -->
+    <section id="about" class="section wrap" role="region" aria-label="About">
+      <h2>About</h2>
+      <div class="about">
+        <div class="about-image">
+          <img src="images/selfie1.jpg" alt="RAR Studios - the maker" class="about-img">
+        </div>
+        <div class="about-text">
+          <p>I’m a Norwegian goldsmith based in Barcelona with a background in glassblowing and contemporary craft. After years working with glass — exploring form, movement and light — I turned my attention to jewellery: the same obsession with material at a smaller scale. My approach blends bohemian chic with traditional motifs and durable finishes meant to be worn every day.</p>
 
-<!-- Footer -->
-<footer>
-<div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-<div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-<p style="color:var(--muted); font-size:14px;">© 2025 RAR Studios. All rights reserved.</p>
-<a href="#home" style="color:var(--muted); text-decoration:none;">Back to top ↑</a>
-</div>
-</footer>
+          <p style="margin-top:12px;">Services: repairs &amp; polishing, custom commissions, and a curated selection of pre-made pieces. Every piece is handled personally in the Barcelona workshop.</p>
+        </div>
+      </div>
+    </section>
 
-<script>
-// small initialization
-document.getElementById('y').textContent = new Date().getFullYear();
+    <!-- Contact -->
+    <section id="contact" class="section wrap" role="region" aria-label="Contact">
+      <h2>Contact</h2>
+      <div class="social-links">
+        <a href="https://www.instagram.com/yourpage" target="_blank" rel="noopener noreferrer">
+          <img src="icons/instagram.png" alt="Instagram" class="social-icon">
+        </a>
+        <a href="https://www.facebook.com/yourpage" target="_blank" rel="noopener noreferrer">
+          <img src="icons/facebook.png" alt="Facebook" class="social-icon">
+        </a>
+      </div>
 
-// hamburger + mobile menu behavior
-const hambtn = document.getElementById('hambtn');
-const mobileMenu = document.getElementById('mobileMenu');
-hambtn.addEventListener('click', () => {
-const open = hambtn.classList.toggle('open');
-hambtn.setAttribute('aria-expanded', String(open));
-mobileMenu.style.display = open ? 'block' : 'none';
-const btn = document.getElementById('hambtn');
-const menu = document.getElementById('mobileMenu');
+      <div class="contact-row">
+        <a class="icon" href="https://wa.me/34624012186" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">📱 WhatsApp +34 624 01 21 86</a>
+        <a class="icon" href="mailto:info@rarstudios.com" aria-label="Email">✉️ info@rarstudios.com</a>
+      </div>
+    </section>
+  </main>
 
-btn.addEventListener('click', () => {
-const open = btn.classList.toggle('open');
-menu.style.display = open ? 'block' : 'none';
-btn.setAttribute('aria-expanded', open);
-});
+  <!-- Footer -->
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> RAR Studios. All rights reserved.</p>
+      <a href="#home" class="back-to-top">Back to top ↑</a>
+    </div>
+  </footer>
 
-// close mobile menu when click a link
-mobileMenu.querySelectorAll('a').forEach(a => {
-a.addEventListener('click', () => {
-hambtn.classList.remove('open');
-hambtn.setAttribute('aria-expanded','false');
-mobileMenu.style.display = 'none';
-});
-});
-
-// close on ESC
-document.addEventListener('keydown', e => {
-if(e.key === 'Escape'){
-hambtn.classList.remove('open');
-hambtn.setAttribute('aria-expanded','false');
-mobileMenu.style.display = 'none';
-}
-});
-
-// Small accessibility: focus outline when tabbing
-document.body.addEventListener('keyup', (e) => {
-if(e.key === 'Tab') document.documentElement.style.scrollBehavior = 'smooth';
-});
-
-// make sure internal links respect header height on direct navigation (offset scroll)
-function offsetAnchor() {
-if(location.hash.length !== 0) {
-window.scrollTo(window.scrollX, window.scrollY - 72);
-}
-}
-window.setTimeout(offsetAnchor, 0);
-window.addEventListener("hashchange", offsetAnchor);
-</script>
-</body>
-</html>
-
-<!-- javascript --> 
-<script>
-    window.addEventListener('scroll', function() {
-      const logo = document.querySelector('.site-logo');
-      if (window.scrollY > 100) {
-        logo.classList.add('scrolled');
-      } else {
-        logo.classList.remove('scrolled');
-      }
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
