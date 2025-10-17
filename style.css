@@ -122,13 +122,13 @@ footer a:hover {
   padding: 40px 0;
   position: relative;
   z-index: 100;
-  background:transparent;
 }
 
 .site-logo {
-  width: 20%; /* adjust size */
+  width: 16%; /* adjust size */
   height: auto;
   transition: all 0.3s ease;
+  background: transparent;
 }
 
 .site-logo.scrolled {
