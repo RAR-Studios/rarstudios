@@ -139,44 +139,41 @@ footer a:hover {
   left: 50%;
   transform: translateX(-50%);
 }
+
 /* Dropdown menu */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-.dropbtn {
-  background: none;
-  color: #aaa;
-  border: none;
-  font-size: 0.95em;
-  cursor: pointer;
-}
-
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #111;
-  min-width: 160px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-  z-index: 1;
+  background: rgba(10,18,26,0.95);
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  z-index: 100;
 }
 
 .dropdown-content a {
   display: block;
-  padding: 12px 16px;
-  color: #ccc;
+  padding: 10px 16px;
+  color: var(--muted);
   text-decoration: none;
+  border-radius: 8px;
 }
 
 .dropdown-content a:hover {
-  background-color: #222;
-  color: #fff;
+  background: rgba(255,255,255,0.05);
+  color: var(--accent);
 }
 
+/* Show dropdown on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 
 /* boxes for click links */
 .service-card {
