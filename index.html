@@ -216,8 +216,8 @@ transition:var(--transition);
 }
 .btn:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.6); }
 
-/* ---------- Services ---------- */
-.services{
+/* ---------- Service ---------- */
+.service{
 display:grid;
 grid-template-columns: repeat(3, 1fr);
 gap:18px;
@@ -257,8 +257,8 @@ border:1px solid rgba(255,255,255,0.03);
 }
 .product img{
 display:block;
-width:100%;
-height:220px;
+width:320px;
+height:320px;
 object-fit:cover;
 border-radius:10px;
 }
@@ -268,7 +268,7 @@ border-radius:10px;
 display:grid;
 grid-template-columns: 1fr 1fr;
 gap:28px;
-align-items:center;
+align-items:left;
 }
 .about p{ color:var(--muted); line-height:1.6; font-size:16px; }
 
@@ -299,7 +299,7 @@ font-size:14px;
 
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
-.services{ grid-template-columns: 1fr; }
+.service{ grid-template-columns: 1fr; }
 .about{ grid-template-columns: 1fr; }
 .grid-4{ grid-template-columns: 1fr 1fr; }
 .navlinks{ display:none; }
@@ -359,7 +359,7 @@ h1{ font-size:28px; }
 
 <div id="mobileMenu" class="mobile-menu" role="menu" style="display:none;">
 <a href="#home" role="menuitem">Home</a>
-<a href="#services" role="menuitem">Services</a>
+<a href="#service" role="menuitem">Service</a>
 <a href="#Pre-Made Jewellery" role="menuitem">Pre-Made Jewellery</a>
 <a href="#about" role="menuitem">About</a>
 <a href="#contact" role="menuitem">Contact</a>
