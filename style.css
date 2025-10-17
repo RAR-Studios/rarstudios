@@ -176,3 +176,19 @@ footer a:hover {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/* shop boces */
+.service-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1.5em;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.service-card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.03);
+}
