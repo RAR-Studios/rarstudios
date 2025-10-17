@@ -167,12 +167,36 @@ footer a:hover {
   background: rgba(255,255,255,0.08);
 }
 
-/* Make images fit properly */
-img {
-  max-width: 100%;
-  height: auto;
+.section {
+  text-align: center;
+  margin: 80px auto;
+  max-width: 1200px;
+}
+
+.section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.grid-4 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.product-img {
+  width: 320px;
+  height: 320px;
   object-fit: cover;
   border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-img:hover {
+  transform: scale(1.03);
 }
 
 /* Dropdown menu */
