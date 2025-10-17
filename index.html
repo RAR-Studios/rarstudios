@@ -523,4 +523,16 @@ window.addEventListener("hashchange", offsetAnchor);
 </body>
 </html>
 
-
+<!-- javascript --> 
+<script>
+    window.addEventListener('scroll', function() {
+      const logo = document.querySelector('.site-logo');
+      if (window.scrollY > 100) {
+        logo.classList.add('scrolled');
+      } else {
+        logo.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
