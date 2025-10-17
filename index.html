@@ -340,11 +340,16 @@ h1{ font-size:28px; }
 
 <nav role="navigation" aria-label="Primary">
 <div class="navlinks">
-<a href="#home">Home</a>
-<a href="#services">Services</a>
-<a href="#Pre-Made Jewellery">Pre-Made Jewellery</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
+  <a href="#home" class="active">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Service</button>
+    <div class="dropdown-content">
+      <a href="#Pre-Made Jewellery">Pre-Made Jewellery</a>
+      <a href="#Made-To-Order">Made-To-Order</a>
+      <a href="#repair">Repair & Polish</a>
+    </div>
+  </div>
+  <a href="#contact">Contact</a>
 </div>
 
 <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
