@@ -67,7 +67,7 @@ nav a:hover {
 }
 
 .gallery img {
-  width: 320px;
+  width: 360px;
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease;
@@ -125,7 +125,7 @@ footer a:hover {
 }
 
 .site-logo {
-  width: 16%; /* adjust size */
+  width: 120px; /* adjust size */
   height: auto;
   transition: all 0.3s ease;
   background: transparent;
