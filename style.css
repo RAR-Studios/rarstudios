@@ -12,6 +12,11 @@ body, h1, h2, h3, p {
   padding: 0;
 }
 
+.wrap {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1200px; /* optional, keeps layout narrow and centered */
+}
 
 header {
   display: flex;
