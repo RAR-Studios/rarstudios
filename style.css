@@ -212,8 +212,8 @@ footer a:hover {
 }
 
 .product-img {
-  width: 80%;
-  max-width:280px
+  width: 60%;
+  max-width:320px
   object-fit: contain;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.1);
