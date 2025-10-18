@@ -212,7 +212,7 @@ footer a:hover {
 }
 
 .product-img {
-  width: 100%;
+  width: 80%;
   max-width:300px
   object-fit: contain;
   border-radius: 12px;
